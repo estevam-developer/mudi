@@ -2,11 +2,11 @@
 <html>
 <head th:replace="~{base::head}"></head>
 <body>
-	<div th:replace="~{base::logo}"></div>
+	<div th:replace="~{base::logo-menu}"></div>
 	<div class="container">
 		<div th:replace="~{base::titulo('Novo Pedido')}"></div>
 		<div class="card  mt-3">
-			<form th:object="${requisicaoCadastroPedido}" class="card-body" action="/pedido/cadastrar" method="post">
+			<form th:action="@{/pedido/cadastrar}" th:object="${requisicaoCadastroPedido}" class="card-body" method="post">
 				<div class="mb-3">
 					<label class="form-label" for="nomeProduto">Produto</label>
 					<input th:field="*{nomeProduto}" th:errorclass="is-invalid" class="form-control" placeholder="Nome do Produto">

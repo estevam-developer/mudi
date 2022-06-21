@@ -9,6 +9,10 @@ import br.com.estevam.mudi.model.StatusPedido;
 @Repository
 public interface PedidoRepository extends JpaRepository<Pedido, Long>{
 
-	Iterable<Pedido> findByStatus(StatusPedido pedido);
+	Iterable<Pedido> findByUsuarioUsername(String usuario);
+	
+	Iterable<Pedido> findByStatusAndUsuarioUsername(StatusPedido pedido, String usuario);
+	
+	Iterable<Pedido> findByStatus(StatusPedido statusPedido);
 
 }

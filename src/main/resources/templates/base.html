@@ -21,11 +21,27 @@
 	</style>
 </head>
 
-<div th:fragment="logo" class="logo-container p-3 mb-3 d-flex justify-content-between">
+<div th:fragment="logo" class="logo-container p-3 d-flex justify-content-between">
 	<span class="logo">Intellectus</span>
-	<span class="d-flex align-items-center">login</span>
+	<span class="d-flex align-items-center">
+		<a th:if="${!#request.getRequestURI().equals('/login')}" sec:authorize="!isAuthenticated()" class="nav-link" th:href="@{/login}">login</a> 
+		<a onclick="document.getElementById('form-login').submit()" sec:authorize="isAuthenticated()" class="nav-link" href="#">logout</a> 
+		<form id="form-login" th:action="@{/logout}" method="post"></form>
+	</span>
 </div>
 
-<div th:fragment="titulo(valor)" class="p-5 bg-secondary bg-opacity-50 rounded">
+<div th:fragment="menu" sec:authorize="isAuthenticated()">
+	<nav class="nav">
+		<a class="nav-link" th:href="@{/home}">Home</a>
+		<a class="nav-link" th:href="@{/pedido/listar}">Meus Pedidos</a>
+	</nav>
+</div>
+
+<div th:fragment="logo-menu">
+	<div th:replace="~{base::logo}"></div>
+	<div th:replace="~{base::menu}"></div>
+</div>
+
+<div th:fragment="titulo(valor)" class="p-5 bg-secondary bg-opacity-50 rounded mt-3">
 	 <h1 class="display-4" th:text="${valor}"></h1>
 </div>
