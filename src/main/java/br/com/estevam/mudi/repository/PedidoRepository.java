@@ -1,5 +1,6 @@
 package br.com.estevam.mudi.repository;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +14,7 @@ public interface PedidoRepository extends JpaRepository<Pedido, Long>{
 	
 	Iterable<Pedido> findByStatusAndUsuarioUsername(StatusPedido pedido, String usuario);
 	
+	@Cacheable("pedidos")
 	Iterable<Pedido> findByStatus(StatusPedido statusPedido);
 
 }
