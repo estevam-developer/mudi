@@ -13,22 +13,32 @@
 			<div class="card-body row">
 				<div class="col-12 col-sm-8 mb-3">
 					<div class="row">
-						<div class="col-md-5">
-							Valor: <span th:if="${pedido.valorNegociado} != null" th:text="${'R$ ' + #numbers.formatDecimal(pedido.valorNegociado,3,'POINT',2,'COMMA')}">200,99</span>
+						<label for="valorNegociado"
+							class="col-2 col-sm-3 col-md-2 col-form-label">Valor:</label>
+						<div class="col-10 col-sm-9 col-md-3">
+							<input type="text" readonly class="form-control-plaintext"
+								id="valorNegociado" th:if="${pedido.valorNegociado} != null"
+								th:value="${'R$ ' + #numbers.formatDecimal(pedido.valorNegociado,3,'POINT',2,'COMMA')}">
 						</div>
-						<div class="col-md-7">
-							Data da Entrega: <span th:text="${#temporals.format(pedido.dataEntrega, 'dd/MM/yyyy')}">10/02/2020</span>
+						<label for="dataEntrega"
+							class="col-4 col-sm-6 col-md-4 col-form-label">Data da	Entrega:</label>
+						<div class="col-8 col-sm-4 col-md-3">
+							<input type="text" readonly class="form-control-plaintext"
+								id="dataEntrega"
+								th:value="${#temporals.format(pedido.dataEntrega, 'dd/MM/yyyy')}">
 						</div>
-					</div>
-					<div>Produto</div>
-					<div>
-						<input class="form-control" th:value="${pedido.urlProduto}"
-							value="url do produto">
 					</div>
 
-					<div>Descrição</div>
 					<div>
-						<textarea class="form-control" th:text="${pedido.descricao}">Descrição do pedido</textarea>
+						<label for="urlProduto" class="form-label">Produto</label> <input
+							id="urlProduto" class="form-control"
+							th:value="${pedido.urlProduto}" value="url do produto">
+					</div>
+
+					<div>
+						<label for="descricao" class="form-label mt-2">Descrição</label>
+						<textarea id="descricao" class="form-control"
+							th:text="${pedido.descricao}">Descrição do pedido</textarea>
 					</div>
 				</div>
 				<div class="col-12 col-sm-4">
